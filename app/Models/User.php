@@ -20,7 +20,7 @@ class User extends Authenticatable
         'sector',
         'calle',
         'casa',
-        'status',
+        'status', 
     ];
 
     protected $hidden = [

@@ -19,6 +19,10 @@ class AperturaCaja extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public function cierre()
+    {
+        return $this->hasOne(CierreCaja::class, 'apertura_caja');
+    }
     protected $fillable = [
         'id',
         'caja_id',
@@ -26,5 +30,6 @@ class AperturaCaja extends Model
         'monto_inicial_bolivares',
         'monto_inicial_dolares',
         'apertura',
+        'estatus'
     ];
 }

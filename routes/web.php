@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AperturaCajaController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\CajaController;
 use App\Http\Controllers\CarritoController;
@@ -54,6 +55,7 @@ Route::resource('productos', App\Http\Controllers\ProductoController::class);
 Route::get('/imagenes/{id}', [ProductoController::class, 'imagenesProducto'])->name('imagenes-producto');
 Route::delete('/removerImagen/{id}', [ProductoController::class, 'removerImagen'])->name('removerImagen');
 Route::post('/agregarImagen/{id}', [ProductoController::class, 'agregarImagen'])->name('agregarImagen');
+Route::resource('aperturas', AperturaCajaController::class);
 
 /* CATEGORIAS Y SUBCATEGORIAS*/
 Route::resource('categorias', App\Http\Controllers\CategoriaController::class);

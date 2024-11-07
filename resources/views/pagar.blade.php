@@ -47,7 +47,9 @@
 
                             <div class="mb-3">
                                 <label for="numero_referencia" class="form-label">Número de Referencia</label>
-                                <input type="text" class="form-control" id="numero_referencia" name="numero_referencia" maxlength="8" placeholder="12345678" pattern="\d{8}" title="Debe tener 8 dígitos" required>
+                                <input type="text" class="form-control" id="numero_referencia" name="numero_referencia"
+                                    maxlength="8" placeholder="12345678" pattern="\d{8}" title="Debe tener 8 dígitos"
+                                    required>
                             </div>
 
                             <div class="mb-3">
@@ -57,16 +59,21 @@
 
                             <div class="d-flex justify-content-between align-items-center">
                                 <p class="fw-bold mb-0">Total:</p>
-                                <p class="text-muted mb-0">{{$total}}</p>
+                                <p class="text-muted mb-0">{{ number_format($total, 2) }} BS</p>
                             </div>
                             <div class="d-flex justify-content-between align-items-center">
                                 <p class="fw-bold mb-0">Impuesto:</p>
-                                <p class="text-muted mb-0">{{$impuesto}}</p>
+                                <p class="text-muted mb-0">{{ number_format($impuesto, 2) }} BS</p>
                             </div>
                             <div class="d-flex justify-content-between align-items-center">
                                 <p class="fw-bold mb-0">Monto a Pagar:</p>
-                                <p class="text-muted mb-0">{{$montoTotal}}</p>
-                                <input type="hidden" name="montoTotal" value="{{$montoTotal}}">
+                                <p class="text-muted mb-0">{{ number_format($montoTotal, 2) }} BS</p>
+                                <input type="hidden" name="montoTotal" value="{{ $montoTotal }}">
+                            </div>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <p class="fw-bold mb-0">Monto a en dolares:</p>
+                                <p class="text-muted mb-0">{{ number_format($montoDollar, 2) }} USD</p>
+                                <input type="hidden" name="montoTotal" value="{{ $montoDollar }}">
                             </div>
 
                             <button type="submit" class="btn btn-primary w-100 mt-4">Realizar Pago</button>

@@ -74,7 +74,7 @@
 
 <!-- Botones de acción -->
 <div class="float-end">
-    {!! Form::submit('Guardar', ['class' => 'btn btn-primary round', 'id' => 'submit_btn', 'disabled' => true]) !!}
+    {!! Form::submit('Guardar', ['class' => 'btn btn-primary round', 'id' => 'submit_btn' ]) !!}
     <a href="{{ route('almacen') }}" class="btn btn-danger round">Cancelar</a>
 </div>
 

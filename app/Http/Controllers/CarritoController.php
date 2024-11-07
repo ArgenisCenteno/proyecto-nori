@@ -51,10 +51,19 @@ class CarritoController extends Controller
     public function detalles($id)
     {
         $producto = Producto::find($id);
+        $response = file_get_contents("https://ve.dolarapi.com/v1/dolares/oficial");
+       
+        // dd();
+         if($response){
+             $dato = json_decode($response);
+             $dollar = $dato->promedio;
+         }else{
+             $dollar = 42.30;
+         }
+ 
 
 
-
-        return view('detalles')->with('producto', $producto);
+        return view('detalles')->with('producto', $producto)->with('dollar', $dollar);
     }
 
     public function agregarCarrito(Request $request, $id)
@@ -63,9 +72,16 @@ class CarritoController extends Controller
         $producto = Producto::find($id);
 
         if (!$producto) {
+            Alert::error('¡Error!', 'Producto no encontrado')->showConfirmButton('Aceptar', 'rgba(79, 59, 228, 1)');
+
             return redirect()->back()->with('error', 'Producto no encontrado');
         }
 
+        if($producto->cantidad < 1){
+            Alert::warning('¡Sin Stock!', 'No tenemos stock suficiente ')->showConfirmButton('Aceptar', 'rgba(79, 59, 228, 1)');
+
+            return redirect()->back();
+        }
 
 
         // Create a cart item
@@ -151,9 +167,20 @@ class CarritoController extends Controller
             }
         }
 
-        $montoTotal = $impuesto + $total;
+        $montoTotal = $impuesto + $total; 
+        $response = file_get_contents("https://ve.dolarapi.com/v1/dolares/oficial");
+       
+        // dd();
+         if($response){
+             $dato = json_decode($response);
+             $dollar = $dato->promedio;
+         }else{
+             $dollar = 42.30;
+         }
 
-        return view('pagar', compact('carrito', 'total', 'montoTotal', 'impuesto'));
+         $montoDollar = $montoTotal / $dollar;
+
+        return view('pagar', compact('carrito', 'total', 'montoTotal', 'impuesto', 'montoDollar'));
     }
 
 

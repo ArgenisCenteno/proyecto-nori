@@ -17,7 +17,8 @@
                                     <div class="carousel-item {{ $loop->first ? 'active' : '' }}">
                                         <img class="d-block w-100" src="{{ asset($imagen->url) }}" alt="Product Image">
                                     </div>
-                                @endforeach                            </div>
+                                @endforeach
+                            </div>
                             <a class="carousel-control-prev" href="#carouselExampleSlidesOnly" role="button"
                                 data-slide="prev">
                                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -44,11 +45,13 @@
 
                     <div class="bg-gray py-2 px-3 mt-4">
                         <h2 class="mb-0">
-                            {{$producto->precio_venta}}
+                            {{$producto->precio_venta}} BS
                         </h2>
-                        <h4 class="mt-0">
-                            <small>{{$producto->precio_venta}} </small>
-                        </h4>
+                        
+                        <h3 class="mt-0">
+                            <small>{{ number_format($producto->precio_venta / $dollar, 2) }} USD</small>
+                        </h3>
+
                     </div>
                     <div class="mt-4">
                         <form action="{{ route('carrito.agregar', $producto->id) }}" method="POST">

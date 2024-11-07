@@ -9,6 +9,7 @@ class CierreCaja extends Model
 {
     use HasFactory;
 
+    protected  $table = 'cierres_caja';
     /**
      * The attributes that are mass assignable.
      *
@@ -23,6 +24,7 @@ class CierreCaja extends Model
         'discrepancia_bolivares',
         'discrepancia_dolares',
         'cierre',
+        'apertura_id'
     ];
 
     public function caja()

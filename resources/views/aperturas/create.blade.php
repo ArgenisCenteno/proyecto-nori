@@ -1,4 +1,5 @@
 @extends('layout.app')
+
 @section('content')
 <main class="app-main"> <!--begin::App Content Header-->
 <div class="container-fluid">
@@ -11,17 +12,11 @@
                             @include('flash::message')
                         </div>
                         <div class="col-md-6 col-6">
-                            <h3 class="p-2 bold">Ventas</h3>
+                            <h3 class="p-2 bold">Abrir caja</h3>
                         </div>
-                        <div class="d-flex justify-content-end mt-3">
-                        @if(Auth::user()->role == 'superAdmin' || Auth::user()->role == 'empleado') 
-                                <a href="{{route('ventas.vender')}}" class="btn btn-primary  round mx-1" >Generar Venta</a>
-                        @endif
-                            </div>
                     </div>
                     <div class="card-body">
-                  
-                        @include('ventas.table')
+                        @include('aperturas.fields')
                     </div>
                 </div>
             </div>
@@ -30,3 +25,7 @@
 </div>
 </main> <!--end::App Main--> <!--begin::Footer-->
 @endsection
+
+@section('js')
+@include('layout.script')
+<script src="{{ asset('js/adminlte.js') }}"></script>

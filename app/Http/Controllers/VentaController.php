@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AperturaCaja;
 use App\Models\Caja;
 use App\Models\DetalleVenta;
 use App\Models\Pago;
@@ -12,6 +13,7 @@ use App\Models\Transaccion;
 use App\Models\User;
 use App\Models\Venta;
 use Carbon\Carbon;
+use Http;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use Alert;
@@ -25,7 +27,13 @@ class VentaController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $data = Venta::with(['user', 'vendedor', 'pago'])->get();
+            if(Auth::user()->hasRole('superAdmin') || Auth::user()->hasRole('superAdmin') ){
+                $data = Venta::with(['user', 'vendedor', 'pago'])->get();
+
+            }else{
+                $data = Venta::with(['user', 'vendedor', 'pago'])->where('user_id', Auth::user()->id)->get();
+
+            }
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('user', function($row) {
@@ -105,9 +113,19 @@ class VentaController extends Controller
 
     public function vender(Request $request)
     {
-        //$caja = Caja::where('activa', '1')->first();
-        $dollar = Tasa::where('name', 'Dollar')->where('status', 'Activo')->first();
+        
+     
         $users = User::pluck('name', 'id');
+
+        $response = file_get_contents("https://ve.dolarapi.com/v1/dolares/oficial");
+       
+       // dd();
+        if($response){
+            $dato = json_decode($response);
+            $dollar = $dato->promedio;
+        }else{
+            $dollar = 42.30;
+        }
 
         return view('ventas.vender')->with('dollar', $dollar)->with('users', $users);
     }
@@ -159,9 +177,22 @@ class VentaController extends Controller
 
     public function generarVenta(Request $request)
     {
+        $caja = Caja::find(1);
+      
+        if(!$caja){
+            Alert::error('¡Error!', 'No hay caja disponible')->showConfirmButton('Aceptar', 'rgba(79, 59, 228, 1)');
+            return redirect()->back();
 
-        if ($request->producto == [] || $request->producto == null) {
+        }
+
+        $apertura = AperturaCaja::where('caja_id', $caja->id)->where('estatus', 'Operando')->first();
+        if(!$apertura){
+            Alert::error('¡Error!', 'No existe una caja abierta')->showConfirmButton('Aceptar', 'rgba(79, 59, 228, 1)');
+            return redirect()->back();
+        }
+        if ($request->productos == [] || $request->productos == null) {
             Alert::error('¡Error!', 'Para realizar una venta es necesario agregar productos')->showConfirmButton('Aceptar', 'rgba(79, 59, 228, 1)');
+            return redirect()->back();
         }
         //obtener datos
         $productos = json_decode($request->productos, true);
@@ -175,6 +206,18 @@ class VentaController extends Controller
         $impuestosTotal = 0;
 
         foreach ($productos as $producto) {
+            $productoModel = Producto::find($producto['id']);
+            if ($productoModel->cantidad < $producto['cantidad']) {
+                // Obtener el nombre del producto
+                $nombreProducto = $productoModel->nombre; // Asumiendo que 'nombre' es el campo que contiene el nombre del producto
+            
+                // Mostrar un mensaje de error con el nombre del producto
+                Alert::error('¡Error!', "Stock insuficiente para el producto: $nombreProducto")
+                    ->showConfirmButton('Aceptar', 'rgba(79, 59, 228, 1)');
+            
+                return redirect()->back();
+            }
+            
             $totalNeto += $producto['precio'] * $producto['cantidad'];
 
             if ($producto['aplicaIva'] == 1) {
@@ -248,9 +291,11 @@ class VentaController extends Controller
 
         foreach ($metodos as $metodo) {
             $transaccion = new Transaccion();
-            $transaccion->caja_id = $request->id_caja;
+            $transaccion->caja_id = 1;
             $transaccion->usuario_id = $userId;
-            $transaccion->tipo = 'venta';
+            $transaccion->tipo = 'VENTA';
+            $transaccion->apertura_id  = $apertura->id;
+            $transaccion->venta_id  = $venta->id;
             $transaccion->metodo_pago = $metodo['metodo'];
             if ($metodo['metodo'] == 'Divisa') {
                 $transaccion->moneda = 'Dollar';

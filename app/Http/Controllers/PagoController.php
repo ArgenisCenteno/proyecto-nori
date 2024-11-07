@@ -25,7 +25,13 @@ class PagoController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $data = Pago::with(['user', 'compras', 'ventas'])->get();
+            if( Auth::user()->hasRole('superAdmin') || Auth::user()->hasRole('superAdmin')){
+                $data = Pago::with(['user', 'compras', 'ventas'])->get();
+
+            }else{
+                $data = Pago::with(['user', 'compras', 'ventas'])->where('user_id', Auth::user()->id)->get();
+
+            }
 
 
             return DataTables::of($data)
@@ -222,6 +228,7 @@ class PagoController extends Controller
         $pago->forma_pago = json_encode($metodos);
         $pago->monto_total = $montoTotal;
         $pago->monto_neto = $total;
+        $pago->user_id = $userId;
         $pago->tasa_dolar = $dollar->valor ?? 0;
         $pago->creado_id = $userId;
         $pago->fecha_pago = Carbon::now()->format('Y-m-d');

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Auth;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
 use Yajra\DataTables\DataTables;
@@ -18,7 +19,11 @@ class UserController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $users = User::with('roles')->get(); // Use `with` to eager load roles
+            if(Auth::user()->hasRole('superAdmin')){
+                $users = User::with('roles')->get(); // Use `with` to eager load roles
+            }else{
+                $users = User::with('roles')->where('id', Auth::user()->id)->get(); // Use `with` to eager load roles
+            }
 
             return DataTables::of($users)
                 ->addColumn('role', function ($row) {
@@ -34,14 +39,22 @@ class UserController extends Controller
                     $viewUrl = route('usuarios.edit', $row->id);
                     $deleteUrl = route('usuarios.destroy', $row->id);
                     $pdfUrl = route('usuarios.pdf', $row->id);
-                    return '<a href="' . $viewUrl . '" class="btn btn-info btn-sm">Ver</a>
-                            <a href="' . $pdfUrl . '" class="btn btn-warning btn-sm" target="_blank">PDF</a>
-                            <form action="' . $deleteUrl . '" method="POST" style="display:inline;" class="btn-delete">
-                                ' . csrf_field() . '
-                                ' . method_field('DELETE') . '
-                                <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
-                            </form>';
+                    
+                    $buttons = '<a href="' . $viewUrl . '" class="btn btn-info btn-sm">Ver</a>
+                                <a href="' . $pdfUrl . '" class="btn btn-warning btn-sm" target="_blank">PDF</a>';
+                    
+                    // Solo agregar el botón de eliminar si el usuario tiene el rol de superAdmin
+                    if (Auth::user()->role == 'superAdmin') {
+                        $buttons .= '<form action="' . $deleteUrl . '" method="POST" style="display:inline;" class="btn-delete">
+                                        ' . csrf_field() . '
+                                        ' . method_field('DELETE') . '
+                                        <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                                     </form>';
+                    }
+                
+                    return $buttons;
                 })
+                
                 ->rawColumns(['role', 'actions'])
                 ->make(true);
         } else {

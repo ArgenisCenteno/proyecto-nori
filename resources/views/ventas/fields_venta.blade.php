@@ -30,9 +30,8 @@
                 <label data-mdb-ripple-init class="btn btn-outline-primary btn-lg" for="option1">
                     <div class="d-flex justify-content-between">
                         <span>Tasa de cambio </span>
-                        <input type="hidden" name="tasa" id="tasa" value="{{$dollar->valor}}">
-                        <input type="hidden" name="id_tasa" value="{{$dollar->id}}">
-                        <span>{{$dollar->valor}}</span>
+                        <input type="hidden" name="tasa" id="tasa" value="{{$dollar}}">
+                        <span>{{$dollar}}</span>
                     </div>
                 </label>
 

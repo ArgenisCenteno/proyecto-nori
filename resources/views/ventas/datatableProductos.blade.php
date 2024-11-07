@@ -195,7 +195,8 @@
                     confirmButtonColor: '#3085d6',
                     cancelButtonColor: '#d33'
                 })
-                $(this).val(stockDisponible);
+                 $(this).val(stockDisponible);
+             
             }
 
             // Actualizar la cantidad en el array
