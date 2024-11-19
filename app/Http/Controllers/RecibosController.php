@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\RecibosExport;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class RecibosController extends Controller
 {
@@ -60,5 +62,22 @@ class RecibosController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function export(Request $request)
+    {
+        $request->validate([
+            'start_date' => 'required|date',
+            'end_date' => 'required|date|after_or_equal:start_date',
+        ]);
+
+        $startDate = $request->start_date;
+        $endDate = $request->end_date;
+
+        return Excel::download(new RecibosExport($startDate, $endDate), 'recibos.xlsx');
+    }
+
+    public function reporte(){
+        return view('recibos.reporte');
     }
 }

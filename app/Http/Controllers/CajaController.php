@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\CierreCajaExport;
 use App\Models\AperturaCaja;
 use App\Models\Caja;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 use Yajra\DataTables\DataTables;
 use Flash;
 use Alert;
@@ -169,5 +171,15 @@ class CajaController extends Controller
         // Devolver una respuesta
         Alert::success('¡Éxito!', 'Caja aperturada exitosamente')->showConfirmButton('Aceptar', 'rgba(79, 59, 228, 1)');
         return redirect()->route('cajas.index');
+    }
+    public function export(Request $request)
+    {
+        $filters = $request->only(['fecha_inicio', 'fecha_fin']);
+
+        return Excel::download(new CierreCajaExport($filters), 'cierres_caja.xlsx');
+    }
+    public function reporte(Request $request)
+    {
+        return view('caja.reporte');
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\ProductosExport;
 use App\Models\ImagenProducto;
 use App\Models\Producto;
 use App\Models\SubCategoria;
@@ -10,6 +11,7 @@ use Flash;
 use Alert;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
+use Maatwebsite\Excel\Facades\Excel;
 use Yajra\DataTables\Facades\DataTables;
 
 class ProductoController extends Controller
@@ -237,5 +239,16 @@ class ProductoController extends Controller
             'success' => true,
             'message' => 'Imagen eliminada exitosamente.'
         ], 200);
+    }
+
+    public function export(Request $request)
+    {
+        $filters = $request->only(['disponible', 'fecha_inicio', 'fecha_fin']);
+
+        return Excel::download(new ProductosExport($filters), 'productos.xlsx');
+    }
+
+    public function reporte(){
+        return view('productos.reporte');
     }
 }

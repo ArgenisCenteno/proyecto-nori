@@ -10,6 +10,8 @@ use App\Http\Controllers\NotificacionController;
 use App\Http\Controllers\PagoController;
 use App\Http\Controllers\PdfController;
 use App\Http\Controllers\ProductoController;
+use App\Http\Controllers\RecibosController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\VentaController;
 use Illuminate\Support\Facades\Route;
 
@@ -46,6 +48,20 @@ Route::get('notificaciones/{id}', [NotificacionController::class, 'show'])->name
 Route::post('notificaciones/mark-all-read', [NotificacionController::class, 'markAllAsRead'])->name('notificaciones.markAllAsRead');
 Route::delete('notificaciones/{id}', [NotificacionController::class, 'destroy'])->name('notificaciones.destroy');
 
+Route::get('/ventas/export', [VentaController::class, 'export'])->name('ventas.export');
+Route::get('/ventas/reporte', [VentaController::class, 'reporte'])->name('ventas.reporte');
+Route::get('/compras/export', [CompraController::class, 'export'])->name('compras.export');
+Route::get('/compras/reporte', [CompraController::class, 'reporte'])->name('compras.reporte');
+Route::get('/recibos/export', [RecibosController::class, 'export'])->name('recibos.export');
+Route::get('/recibos/reporte', [RecibosController::class, 'reporte'])->name('recibos.reporte');
+Route::get('/pagos/export', [PagoController::class, 'export'])->name('pagos.export');
+Route::get('/pagos/reporte', [PagoController::class, 'reporte'])->name('pagos.reporte');
+Route::get('/productos/export', [ProductoController::class, 'export'])->name('productos.export');
+Route::get('/productos/reporte', [ProductoController::class, 'reporte'])->name('productos.reporte');
+Route::get('/cierres-caja/export', [CajaController::class, 'export'])->name('cierres_caja.export');
+Route::get('/cierres-caja/reporte', [CajaController::class, 'reporte'])->name('cierres_caja.reporte');
+Route::get('/usuarios/export', [UserController::class, 'export'])->name('usuarios.export');
+Route::get('/usuarios/reporte', [UserController::class, 'reporte'])->name('usuarios.reporte');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 /* ALMACEN DE PRODUCTOS */

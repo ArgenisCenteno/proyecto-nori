@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\PagosExport;
 use App\Models\DetalleVenta;
 use App\Models\Pago;
 use App\Models\Producto;
@@ -12,6 +13,7 @@ use App\Models\User;
 use App\Models\Venta;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 use Yajra\DataTables\DataTables;
 use Alert;
 use Illuminate\Support\Facades\Auth;
@@ -320,5 +322,22 @@ class PagoController extends Controller
         Alert::success('Exito!', 'Orden generada correctamente, espere que su compra sea procesada')->showConfirmButton('Aceptar', 'rgba(79, 59, 228, 1)');
 
         return redirect(route('pagos.index'));
+    }
+
+    public function export(Request $request)
+    {
+        $request->validate([
+            'start_date' => 'required|date',
+            'end_date' => 'required|date|after_or_equal:start_date',
+        ]);
+
+        $startDate = $request->start_date;
+        $endDate = $request->end_date;
+
+        return Excel::download(new PagosExport($startDate, $endDate), 'pagos.xlsx');
+    }
+
+    public function reporte(){
+        return view('pagos.reporte');
     }
 }

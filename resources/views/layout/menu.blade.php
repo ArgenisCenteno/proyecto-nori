@@ -124,31 +124,31 @@
                             </p>
                         </a>
                         <ul class="nav nav-treeview">
-                            <li class="nav-item"> <a href="./docs/components/main-header.html" class="nav-link"> <i
+                            <li class="nav-item"> <a href="{{route('ventas.reporte')}}" class="nav-link"> <i
                                         class="nav-icon bi bi-circle"></i>
                                     <p>Ventas</p>
                                 </a> </li>
-                            <li class="nav-item"> <a href="./docs/components/main-sidebar.html" class="nav-link"> <i
+                            <li class="nav-item"> <a href="{{route('compras.reporte')}}" class="nav-link"> <i
                                         class="nav-icon bi bi-circle"></i>
                                     <p>Compras</p>
                                 </a> </li>
-                            <li class="nav-item"> <a href="./docs/components/main-sidebar.html" class="nav-link"> <i
+                            <li class="nav-item"> <a  href="{{route('recibos.reporte')}}"class="nav-link"> <i
                                         class="nav-icon bi bi-circle"></i>
                                     <p>Recibos</p>
                                 </a> </li>
-                            <li class="nav-item"> <a href="./docs/components/main-sidebar.html" class="nav-link"> <i
+                            <li class="nav-item"> <a href="{{route('pagos.reporte')}}" class="nav-link"> <i
                                         class="nav-icon bi bi-circle"></i>
                                     <p>Pagos</p>
                                 </a> </li>
-                            <li class="nav-item"> <a href="./docs/components/main-sidebar.html" class="nav-link"> <i
+                            <li class="nav-item"> <a href="{{route('productos.reporte')}}" class="nav-link"> <i
                                         class="nav-icon bi bi-circle"></i>
                                     <p>Inventario</p>
                                 </a> </li>
-                            <li class="nav-item"> <a href="./docs/components/main-sidebar.html" class="nav-link"> <i
+                            <li class="nav-item"> <a href="{{route('cierres_caja.reporte')}}" class="nav-link"> <i
                                         class="nav-icon bi bi-circle"></i>
                                     <p>Caja</p>
                                 </a> </li>
-                            <li class="nav-item"> <a href="./docs/components/main-sidebar.html" class="nav-link"> <i
+                            <li class="nav-item"> <a href="{{route('usuarios.reporte')}}" class="nav-link"> <i
                                         class="nav-icon bi bi-circle"></i>
                                     <p>Usuarios</p>
                                 </a> </li>

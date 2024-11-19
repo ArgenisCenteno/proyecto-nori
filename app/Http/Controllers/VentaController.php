@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\VentasExport;
 use App\Models\AperturaCaja;
 use App\Models\Caja;
 use App\Models\DetalleVenta;
@@ -15,6 +16,7 @@ use App\Models\Venta;
 use Carbon\Carbon;
 use Http;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 use Yajra\DataTables\DataTables;
 use Alert;
 use Illuminate\Support\Facades\Auth;
@@ -344,5 +346,22 @@ class VentaController extends Controller
     {
         $venta = Venta::with(['user', 'vendedor', 'pago', 'detalleVentas'])->find($id);
         return view('ventas.show', compact('venta'));
+    }
+
+    public function export(Request $request)
+    {
+        $request->validate([
+            'start_date' => 'required|date',
+            'end_date' => 'required|date|after_or_equal:start_date',
+        ]);
+
+        $startDate = $request->start_date;
+        $endDate = $request->end_date;
+
+        return Excel::download(new VentasExport($startDate, $endDate), 'ventas.xlsx');
+    }
+
+    public function reporte(){
+        return view('ventas.reporte');
     }
 }

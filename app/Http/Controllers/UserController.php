@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\UserExport;
 use App\Models\User;
 use Auth;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 use Spatie\Permission\Models\Role;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\Validator;
@@ -211,4 +213,15 @@ class UserController extends Controller
     {
         //
     }
+
+    public function export(Request $request)
+{
+    $filters = $request->only(['fecha_inicio', 'fecha_fin']);
+
+    return Excel::download(new UserExport($filters), 'usuarios.xlsx');
+}
+public function reporte(Request $request)
+{
+   return view('usuarios.reporte')
+;}
 }

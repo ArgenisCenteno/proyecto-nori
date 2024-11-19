@@ -1,6 +1,7 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Exports\ComprasExport;
 use App\Models\Caja;
 use App\Models\Compra;
 use App\Models\DetalleCompra;
@@ -13,6 +14,7 @@ use App\Models\Transaccion;
 use App\Models\User; 
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 use Yajra\DataTables\DataTables;
 use Alert;
 use Illuminate\Support\Facades\Auth;
@@ -276,5 +278,22 @@ class CompraController extends Controller
     {
         $compra = Compra::with(['user', 'proveedor', 'pago', 'detalleCompras'])->find($id);
         return view('compras.show', compact('compra'));
+    }
+
+    public function export(Request $request)
+    {
+        $request->validate([
+            'start_date' => 'required|date',
+            'end_date' => 'required|date|after_or_equal:start_date',
+        ]);
+
+        $startDate = $request->start_date;
+        $endDate = $request->end_date;
+
+        return Excel::download(new ComprasExport($startDate, $endDate), 'compras.xlsx');
+    }
+
+    public function reporte(){
+        return view('compras.reporte');
     }
 }
