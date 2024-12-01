@@ -119,14 +119,32 @@ class VentaController extends Controller
      
         $users = User::pluck('name', 'id');
 
-        $response = file_get_contents("https://ve.dolarapi.com/v1/dolares/oficial");
-       
-       // dd();
-        if($response){
+        function isConnected()
+        {
+            $connected = @fsockopen("www.google.com", 80); // Intenta conectar al puerto 80 de Google
+            if ($connected) {
+                fclose($connected);
+                return true; // Hay conexión
+            }
+            return false; // No hay conexión
+        }
+
+        if (isConnected()) {
+            $response = file_get_contents("https://ve.dolarapi.com/v1/dolares/oficial");
+          
+        } else {
+             
+            $response = false;
+        }
+ 
+
+
+        // dd();
+        if ($response) {
             $dato = json_decode($response);
             $dollar = $dato->promedio;
-        }else{
-            $dollar = 42.30;
+        } else {
+            $dollar = 47.60;
         }
 
         return view('ventas.vender')->with('dollar', $dollar)->with('users', $users);
@@ -354,12 +372,25 @@ class VentaController extends Controller
             'start_date' => 'required|date',
             'end_date' => 'required|date|after_or_equal:start_date',
         ]);
-
+    
         $startDate = $request->start_date;
         $endDate = $request->end_date;
-
-        return Excel::download(new VentasExport($startDate, $endDate), 'ventas.xlsx');
+        $type = $request->type;
+    
+        if ($type == 'EXCEL') {
+            return Excel::download(new VentasExport($startDate, $endDate), 'ventas.xlsx');
+        } elseif ($type == 'PDF') {
+            $ventas = Venta::with(['user', 'vendedor'])
+                ->whereBetween('created_at', [$startDate, $endDate])
+                ->get();
+    
+            $pdf = \PDF::loadView('exports.ventas_pdf', compact('ventas'));
+    
+            // Abre el PDF en el navegador
+            return $pdf->stream('ventas.pdf');
+        }
     }
+    
 
     public function reporte(){
         return view('ventas.reporte');

@@ -324,6 +324,7 @@ class PagoController extends Controller
         return redirect(route('pagos.index'));
     }
 
+
     public function export(Request $request)
     {
         $request->validate([
@@ -333,8 +334,23 @@ class PagoController extends Controller
 
         $startDate = $request->start_date;
         $endDate = $request->end_date;
+        $type = $request->type;
+        if ($type == 'EXCEL') {
+            return Excel::download(new PagosExport($startDate, $endDate), 'pagos.xlsx');
+        } elseif ($type == 'PDF') {
+            $pagos = Pago::with(['ventas', 'compras', 'recibos', 'user'])
+                ->whereBetween('created_at', [$startDate, $endDate])
+                ->get();
+                //dd($pagos);
+            if (count($pagos) == 0) {
+                Alert::warning('¡Advertencia!', 'Sin registros encontrados')->showConfirmButton('Aceptar', 'rgba(79, 59, 228, 1)');
+                return redirect()->back();
+            }
+            $pdf = \PDF::loadView('exports.pagos_pdf', compact('pagos'));
 
-        return Excel::download(new PagosExport($startDate, $endDate), 'pagos.xlsx');
+            // Abre el PDF en el navegador
+            return $pdf->stream('recibos.pdf');
+        }
     }
 
     public function reporte(){

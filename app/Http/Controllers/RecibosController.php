@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Exports\RecibosExport;
+use App\Models\Recibo;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -73,11 +74,28 @@ class RecibosController extends Controller
 
         $startDate = $request->start_date;
         $endDate = $request->end_date;
+        $type = $request->type;
 
-        return Excel::download(new RecibosExport($startDate, $endDate), 'recibos.xlsx');
+        if ($type == 'EXCEL') {
+            return Excel::download(new RecibosExport($startDate, $endDate), 'recibos.xlsx');
+        } elseif ($type == 'PDF') {
+            $recibos = Recibo::with(['pago', 'user'])
+                ->whereBetween('created_at', [$startDate, $endDate])
+                ->get();
+            if (count($recibos) == 0) {
+                Alert::warning('¡Advertencia!', 'Sin registros encontrados')->showConfirmButton('Aceptar', 'rgba(79, 59, 228, 1)');
+                return redirect()->back();
+            }
+            $pdf = \PDF::loadView('exports.recibos_pdf', compact('recibos'));
+
+            // Abre el PDF en el navegador
+            return $pdf->stream('recibos.pdf');
+        }
     }
 
-    public function reporte(){
+
+    public function reporte()
+    {
         return view('recibos.reporte');
     }
 }

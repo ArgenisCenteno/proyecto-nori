@@ -32,10 +32,18 @@
                                         <label for="end_date">Fecha Fin</label>
                                         <input type="date" id="end_date" name="end_date" class="form-control" required>
                                     </div>
+                                    <div class="col">
+                                        <label for="end_date">Tipo</label>
+                                        <select name="type" id="type" class="form-control">
+                                                <option value="EXCEL">EXCEL</option>
+                                                <option value="PDF">PDF</option>
+                                            </select>
+                                    </div>
                                 </div>
+
                                 <button type="submit" class="btn btn-primary">Exportar</button>
                             </form>
-                        </div>
+                        </div>  
                     </div>
                 </div>
             </div>

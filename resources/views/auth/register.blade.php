@@ -31,8 +31,8 @@
                   <label class="form-label" for="name">Nombre Completo</label>
                   <input type="text" id="name" name="name" class="form-control" required />
                   @error('name')
-                <p class="text-danger">{{ $message }}</p> <!-- Mostrar error de validación -->
-              @enderror
+            <p class="text-danger">{{ $message }}</p> <!-- Mostrar error de validación -->
+          @enderror
                 </div>
               </div>
               <div class="col-md-6 mb-4">
@@ -41,8 +41,8 @@
                   <input type="text" id="cedula" name="cedula" class="form-control" required />
                   <p class="text-danger" id="cedulaError" style="display: none;">Cédula inválida.</p>
                   @error('dni')
-                <p class="text-danger">{{ $message }}</p> <!-- Mostrar error de validación -->
-              @enderror
+            <p class="text-danger">{{ $message }}</p> <!-- Mostrar error de validación -->
+          @enderror
                 </div>
               </div>
             </div>
@@ -52,8 +52,8 @@
               <label class="form-label" for="email">Correo Electrónico</label>
               <input type="email" id="email" name="email" class="form-control" required />
               @error('email')
-                <p class="text-danger">{{ $message }}</p> <!-- Mostrar error de validación -->
-              @enderror
+          <p class="text-danger">{{ $message }}</p> <!-- Mostrar error de validación -->
+        @enderror
             </div>
 
             <!-- Sector, Calle y Casa -->
@@ -68,12 +68,20 @@
                 <div class="form-outline">
                   <label class="form-label" for="calle">Calle</label>
                   <input type="text" id="calle" name="calle" class="form-control" />
+                  @error('calle')
+            <p class="text-danger">{{ $message }}</p> <!-- Mostrar error de validación -->
+          @enderror
                 </div>
               </div>
               <div class="col-md-4 mb-4">
                 <div class="form-outline">
                   <label class="form-label" for="casa">Casa</label>
                   <input type="text" id="casa" name="casa" class="form-control" />
+                  @error('casa')
+            <p class="text-danger">{{ $message }}</p> <!-- Mostrar error de validación -->
+          @enderror
+
+
                 </div>
               </div>
             </div>
@@ -85,11 +93,18 @@
                   <label class="form-label" for="password">Contraseña</label>
                   <input type="password" id="password" name="password" class="form-control" required />
                 </div>
+                @error('password')
+          <p class="text-danger">{{ $message }}</p> <!-- Mostrar error de validación -->
+        @enderror
               </div>
               <div class="col-md-6 mb-4">
                 <div class="form-outline">
                   <label class="form-label" for="confirm_password">Confirmar Contraseña</label>
-                  <input type="password" id="confirm_password" name="confirm_password" class="form-control" required />
+                  <input type="confirm_password" id="confirm_password" name="confirm_password" class="form-control"
+                    required />
+                  @error('calle')
+            <p class="text-danger">{{ $message }}</p> <!-- Mostrar error de validación -->
+          @enderror
                   <p class="text-danger" id="passwordError" style="display: none;">Las contraseñas no coinciden.</p>
                 </div>
               </div>
