@@ -17,7 +17,7 @@ class CierreCajaExport implements FromView, ShouldAutoSize
     }
 
     public function view(): View
-    {
+    { 
         $query = CierreCaja::with(['caja', 'usuario']);
 
         if (isset($this->filters['fecha_inicio']) && isset($this->filters['fecha_fin'])) {

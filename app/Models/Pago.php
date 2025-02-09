@@ -32,6 +32,14 @@ class Pago extends Model
     {
         return $this->hasMany(Venta::class, 'pago_id');
     }
+    public function venta()
+    {
+        return $this->belongsTo(Venta::class, 'pago_id');
+    }
+    public function compra()
+    {
+        return $this->belongsTo(Venta::class, 'pago_id');
+    }
 
     public function compras()
     {

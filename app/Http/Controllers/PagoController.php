@@ -29,7 +29,7 @@ class PagoController extends Controller
         if ($request->ajax()) {
             if( Auth::user()->hasRole('superAdmin') || Auth::user()->hasRole('superAdmin')){
                 $data = Pago::with(['user', 'compras', 'ventas'])->get();
-
+  
             }else{
                 $data = Pago::with(['user', 'compras', 'ventas'])->where('user_id', Auth::user()->id)->get();
 
@@ -107,8 +107,10 @@ class PagoController extends Controller
     public function edit(string $id)
     {
         //dd("test");
-        $pago = Pago::findOrFail($id); // Get the payment record by ID
-        return view('pagos.edit', compact('pago')); // Return the edit view with the payment record
+        $pago = Pago::with('venta')->find($id); // Get the payment record by ID
+        $formaPagoArray = json_decode($pago->forma_pago, true); 
+ 
+        return view('pagos.edit', compact('pago', 'formaPagoArray')); // Return the edit view with the payment record
     }
 
     /**
@@ -145,7 +147,7 @@ class PagoController extends Controller
     public function destroy(string $id)
     {
         $pago = Pago::findOrFail($id); // Find the payment by ID
-        $pago->detele();
+        $pago->delete();
         Alert::success('¡Exito!', 'Pago eliminado exitosamente')->showConfirmButton('Aceptar', 'rgba(79, 59, 228, 1)');
         return redirect(route('pagos.index'));
     }

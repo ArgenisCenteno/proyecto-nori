@@ -7,7 +7,7 @@
             <div class="col-12 col-md-6">
                 <div class="text-center text-md-start">
                     <h1 class="display-md-2 display-4 fw-bold text-dark pb-2">
-                        <span class="text-primary">Farmagarca </span> tú farmacia de confianza
+                        <span class="text-primary">Farmagarba </span> tú farmacia de confianza
                     </h1>
                     <p class="lead">
                         Conoce todos nuestros productos, estamos para servirte.
@@ -33,10 +33,10 @@
         <div class="col-12 col-md-12 text-center text-lg-start col-lg-7">
             <h2 class="fw-bold text-primary fs-1 pb-3">Sobre nosotros</h2>
             <p class="about-text">
-                En Farmagarca, nos dedicamos a ofrecerte una amplia gama de productos farmacéuticos y de cuidado
+                En Farmagarba, nos dedicamos a ofrecerte una amplia gama de productos farmacéuticos y de cuidado
                 personal, todos seleccionados con la más alta calidad. Nuestro equipo de profesionales está siempre
                 disponible para brindarte asesoría personalizada, garantizando que encuentres exactamente lo que
-                necesitas para tu bienestar. Con un ambiente acogedor y precios competitivos, en Farmagarca creemos que
+                necesitas para tu bienestar. Con un ambiente acogedor y precios competitivos, en Farmagarba creemos que
                 cuidar de ti y de tu familia nunca debería ser complicado. ¡Visítanos y descubre cómo podemos ayudarte a
                 vivir mejor!
             </p>
@@ -92,11 +92,10 @@
         <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
           <!-- Content -->
           <h6 class="text-uppercase fw-bold mb-4">
-            <i class="fas fa-gem me-3"></i>Company name
+            <i class="fas fa-gem me-3"></i>Farmagarba
           </h6>
           <p>
-            Here you can use rows and columns to organize your footer content. Lorem ipsum
-            dolor sit amet, consectetur adipisicing elit.
+            Empresa farmaceutica, Punta de Mata
           </p>
         </div>
         <!-- Grid column -->
@@ -165,7 +164,7 @@
   <!-- Copyright -->
   <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
     © 2024 Copyright:
-    <a class="text-reset fw-bold" href="#">Farmagarca C.A</a>
+    <a class="text-reset fw-bold" href="#">Farmagarba C.A</a>
   </div>
   <!-- Copyright -->
 </footer>

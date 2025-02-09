@@ -21,7 +21,7 @@
                 <thead>
                     <tr class="m-0 ">
                         <td class="py-1 align-middle m-0 text-center">
-                          <h4 class="bolt"> Farmagarca</h4>
+                          <h4 class="bolt"> Farmagarba</h4>
                         </td>
                         <td class="py-1 text-center encabezado">
                             <p class="mb-0 bold" style="font-size: 0.6em">REPÚBLICA BOLIVARIANA DE VENEZUELA</p>

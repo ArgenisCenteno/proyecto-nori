@@ -1,8 +1,8 @@
 <aside class="app-sidebar bg-body-secondary shadow" data-bs-theme="dark"> <!--begin::Sidebar Brand-->
     <div class="sidebar-brand"> <!--begin::Brand Link--> <a href="{{route('home')}}" class="brand-link">
-            <!--begin::Brand Image--> <img src="{{asset('iconos/solicitud.png')}}" alt="FarmaGarca"
+            <!--begin::Brand Image--> <img src="{{asset('iconos/solicitud.png')}}" alt="Farmagarba"
                 class="brand-image opacity-75 shadow"> <!--end::Brand Image--> <!--begin::Brand Text--> <span
-                class="brand-text fw-light">Farmagarca</span> <!--end::Brand Text--> </a> <!--end::Brand Link--> </div>
+                class="brand-text fw-light">Farmagarba</span> <!--end::Brand Text--> </a> <!--end::Brand Link--> </div>
     <!--end::Sidebar Brand--> <!--begin::Sidebar Wrapper-->
     <div class="sidebar-wrapper">
         <nav class="mt-2"> <!--begin::Sidebar Menu-->

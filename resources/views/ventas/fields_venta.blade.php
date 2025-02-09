@@ -13,9 +13,9 @@
 
         </div>
         <div class="text-center mt-4">
-            <h5>Total a Pagar: <span id="totalVenta" class="totalVenta">$0.00</span></h5>
-            <h5>Cancelado: <span id="cancelado" class="cancelado">$0.00</span></h5>
-            <h5>Restante: <span id="restante" class="restante">$0.00</span></h5>
+            <h5>Total a Pagar: <span id="totalVenta" class="totalVenta">Bs0.00</span></h5>
+            <h5>Cancelado: <span id="cancelado" class="cancelado">Bs0.00</span></h5>
+            <h5>Restante: <span id="restante" class="restante">Bs0.00</span></h5>
             <input type="hidden" name="productos" id="productosInput">
             <input type="hidden" name="metodos_pago" id="metodosPagoInput">
         </div>

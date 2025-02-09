@@ -82,6 +82,20 @@
                 success: function (response) {
                     if (response.success) {
                         const producto = response.producto;
+                        const fechaVencimiento = new Date(producto.fecha_vencimiento);
+                        const fechaActual = new Date();
+
+                        if (fechaVencimiento < fechaActual) {
+                            Swal.fire({
+                                title: 'Producto vencido',
+                                text: "Este producto está vencido y no puede ser agregado al carrito.",
+                                icon: 'warning',
+                                showCancelButton: false,
+                                confirmButtonColor: '#3085d6',
+                                cancelButtonColor: '#d33'
+                            });
+                            return;  // Detener la ejecución si está vencido
+                        }
 
                         if (producto.cantidad == 0 || producto.cantidad < 0) {
                             Swal.fire({
@@ -195,8 +209,8 @@
                     confirmButtonColor: '#3085d6',
                     cancelButtonColor: '#d33'
                 })
-                 $(this).val(stockDisponible);
-             
+                $(this).val(stockDisponible);
+
             }
 
             // Actualizar la cantidad en el array
@@ -241,7 +255,8 @@
 
 
             // Mostrar el total calculado
-            $('.totalVenta').text('$' + total.toFixed(2));
+           $('.totalVenta').text('Bs' + total.toFixed(2));
+
 
         }
 
@@ -280,8 +295,8 @@
         }
 
 
-        let totalVenta = parseFloat($('#totalVenta').text().replace('$', ''));
-        let cancelado = parseFloat($('#cancelado').text().replace('$', ''));
+        let totalVenta = parseFloat($('#totalVenta').text().replace('Bs', ''));
+        let cancelado = parseFloat($('#cancelado').text().replace('Bs', ''));
 
         if (cancelado + montoBs > totalVenta) {
             $('#advertencia').show();
@@ -300,7 +315,7 @@
             };
 
             metodosPago.push(metodo);
-            $('#cancelado').text('$' + cancelado.toFixed(2));
+            $('#cancelado').text('Bs' + cancelado.toFixed(2));
 
             // Check if total is paid
             if (cancelado >= totalVenta) {
@@ -360,8 +375,8 @@
         });
 
         // Actualizar en el DOM
-        let totalVenta = parseFloat($('#totalVenta').text().replace('$', ''));
-        $('#cancelado').text('$' + totalCancelado.toFixed(2));
+        let totalVenta = parseFloat($('#totalVenta').text().replace('Bs', ''));
+        $('#cancelado').text('Bs' + totalCancelado.toFixed(2));
         $('#restante').text((totalCancelado - totalVenta).toFixed(2));
 
 

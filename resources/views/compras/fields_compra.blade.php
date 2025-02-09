@@ -13,9 +13,9 @@
 
         </div>
         <div class="text-center mt-4">
-            <h5>Total a Pagar: <span id="totalVenta" class="totalVenta">$0.00</span></h5>
-            <h5>Cancelado: <span id="cancelado" class="cancelado">$0.00</span></h5>
-            <h5>Restante: <span id="restante" class="restante">$0.00</span></h5>
+            <h5>Total a Pagar: <span id="totalVenta" class="totalVenta">Bs0.00</span></h5>
+            <h5>Cancelado: <span id="cancelado" class="cancelado">Bs0.00</span></h5>
+            <h5>Restante: <span id="restante" class="restante">Bs0.00</span></h5>
             <input type="hidden" name="productos" id="productosInput">
             <input type="hidden" name="metodos_pago" id="metodosPagoInput">
         </div>
@@ -36,9 +36,9 @@
                 <label data-mdb-ripple-init class="btn btn-outline-primary btn-lg" for="option1">
                     <div class="d-flex justify-content-between">
                         <span>Tasa de cambio </span>
-                        <input type="hidden" name="tasa" id="tasa" value="{{$dollar->valor}}">
-                        <input type="hidden" name="id_tasa" value="{{$dollar->id}}">
-                        <span>{{$dollar->valor}}</span>
+                        <input type="hidden" name="tasa" id="tasa" value="{{$dollar->valor ?? '54.40'}}">
+                        <input type="hidden" name="id_tasa" value="{{$dollar->id ?? ''}}">
+                        <span>{{$dollar->valor ?? '54.30'}}</span>
                     </div>
                 </label>
 
@@ -53,8 +53,8 @@
                 <h4>Proveedor</h4>
                 <select name="user_id" id="user_id" class="form-control select2 mb-2 mt-2">
                 <option value="">Seleccione una opción</option>
-                    @foreach($users as $id => $name)
-                        <option value="{{ $id }}">{{ $name }}</option>
+                    @foreach($users as $dato)
+                        <option value="{{ $dato->id }}">{{ $dato->razon_social }}</option>
                     @endforeach
                 </select>
 

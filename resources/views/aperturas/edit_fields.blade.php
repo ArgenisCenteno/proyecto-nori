@@ -76,7 +76,7 @@
         @endforeach
     </tbody>
 </table>
-@if($apertura->estatus === 'Cerrado')
+@if($apertura->estatus !== 'Cerrado')
 
 <!-- Botón para cerrar caja -->
 <form action="{{ route('aperturas.update', $apertura->id) }}" method="POST">

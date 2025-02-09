@@ -217,7 +217,7 @@ class VentaController extends Controller
         //obtener datos
         $productos = json_decode($request->productos, true);
         $metodos = json_decode($request->metodos_pago, true);
-
+  
 
         //calcular el monto total, monto neto e impuestos
 

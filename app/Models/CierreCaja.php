@@ -36,4 +36,8 @@ class CierreCaja extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public function apertura()
+    {
+        return $this->hasOne(AperturaCaja::class, 'apertura_id');
+    }
 }

@@ -106,7 +106,7 @@ class CompraController extends Controller
     {
         $caja = Caja::where('activa', '1')->first();
         $dollar = Tasa::where('name', 'Dollar')->where('status', 'Activo')->first();
-        $users = Proveedor::pluck('razon_social', 'id');
+        $users = Proveedor::select('razon_social', 'id')->get();
 
         return view('compras.comprar')->with('caja', $caja)->with('dollar', $dollar)->with('users', $users);
     }
@@ -204,7 +204,7 @@ class CompraController extends Controller
         //registrar Compra
         $Compra = new Compra();
         $Compra->user_id = $request->user_id;
-        $Compra->proveedor_id = $userId;
+        $Compra->proveedor_id = $request->user_id;
         $Compra->monto_total = $montoTotal;
         $Compra->status = 'Pagado';
         $Compra->pago_id = $pago->id;

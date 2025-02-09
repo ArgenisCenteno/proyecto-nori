@@ -48,8 +48,8 @@
         {!! Form::label('cantidad', 'Cantidad:', ['class' => 'bold']) !!}
         {!! Form::number('cantidad', $producto->cantidad, ['class' => 'form-control round', 'step' => '1', 'required']) !!}
     </div>
-
-    <!-- Subcategoría Field -->
+ 
+    <!-- Subcategoría Field -->  
     <div class="form-group col-sm-12 col-md-6">
         {!! Form::label('sub_categoria_id', 'Subcategoría:', ['class' => 'bold']) !!}
         {!! Form::select('sub_categoria_id', $subcategorias, $producto->sub_categoria_id, ['class' => 'form-control round', 'placeholder' => 'Selecciona una subcategoría', 'required']) !!}

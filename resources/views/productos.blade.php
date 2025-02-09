@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container pt-4">
+<section class="h-100 p-5">
+    <div class="container-fluid pt-4">
     <div class="row">
         <!-- Filter Section -->
         <div class="col-md-3">
@@ -56,4 +57,5 @@
         </div>
     </div>
 </div>
+</section>
 @endsection

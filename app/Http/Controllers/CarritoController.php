@@ -50,7 +50,7 @@ class CarritoController extends Controller
 
     public function detalles($id)
     {
-        $producto = Producto::find($id);
+        $producto = Producto::find($id);  
         $response = file_get_contents("https://ve.dolarapi.com/v1/dolares/oficial");
        
         // dd();

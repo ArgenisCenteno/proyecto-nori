@@ -25,7 +25,7 @@
                         autoHide: Default.scrollbarAutoHide,
                         clickScroll: Default.scrollbarClickScroll,
                     },
-                });
+                });  
             }
         });
     </script> <!--end::OverlayScrollbars Configure--> <!-- OPTIONAL SCRIPTS --> <!-- sortablejs -->
