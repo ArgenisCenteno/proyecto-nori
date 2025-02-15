@@ -112,6 +112,7 @@
                                 class="nav-icon bi bi-download"></i>
                             <p>Pagos</p>
                         </a> </li>
+                        @if(Auth::user()->hasRole('superAdmin'))
                     <li class="nav-item"> <a href="{{route('usuarios.index')}}" class="nav-link"> <i
                                 class="nav-icon bi bi-grip-horizontal"></i>
                             <p>Usuarios</p>
@@ -153,6 +154,7 @@
                                     <p>Usuarios</p>
                                 </a> </li>
                         </ul>
+                        @endif
                     </li>
                 @else(Auth::role('cliente'))
                     <li class="nav-item">

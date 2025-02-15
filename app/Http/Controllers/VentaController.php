@@ -29,7 +29,7 @@ class VentaController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            if(Auth::user()->hasRole('superAdmin') || Auth::user()->hasRole('superAdmin') ){
+            if(Auth::user()->hasRole('superAdmin') || Auth::user()->hasRole('empleado') ){
                 $data = Venta::with(['user', 'vendedor', 'pago'])->get();
 
             }else{
