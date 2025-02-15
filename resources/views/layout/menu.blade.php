@@ -8,7 +8,7 @@
         <nav class="mt-2"> <!--begin::Sidebar Menu-->
 
             <ul class="nav sidebar-menu flex-column" data-lte-toggle="treeview" role="menu" data-accordion="false">
-                @if(Auth::user()->hasRole('superAdmin')|| Auth::user()->hasRole('superAdmin'))
+                @if(Auth::user()->hasRole('superAdmin')|| Auth::user()->hasRole('empleado'))
                     <li class="nav-item "> <a href="#" class="nav-link ">
                             <img src={{asset('iconos/solicitud.png')}} width="20px" alt="clasificadores-tasas">
                             <p>
