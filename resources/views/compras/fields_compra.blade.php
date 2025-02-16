@@ -36,9 +36,9 @@
                 <label data-mdb-ripple-init class="btn btn-outline-primary btn-lg" for="option1">
                     <div class="d-flex justify-content-between">
                         <span>Tasa de cambio </span>
-                        <input type="hidden" name="tasa" id="tasa" value="{{$dollar->valor ?? '54.40'}}">
-                        <input type="hidden" name="id_tasa" value="{{$dollar->id ?? ''}}">
-                        <span>{{$dollar->valor ?? '54.30'}}</span>
+                        <input type="hidden" name="tasa" id="tasa" value="{{$dollar ?? '54.40'}}">
+                       
+                        <span>{{$dollar ?? '54.30'}}</span>
                     </div>
                 </label>
 
@@ -51,7 +51,7 @@
                     </div>
                 </label>
                 <h4>Proveedor</h4>
-                <select name="user_id" id="user_id" class="form-control select2 mb-2 mt-2">
+                <select name="user_id" id="user_id" class="form-control select2 mb-2 mt-2" required>
                 <option value="">Seleccione una opción</option>
                     @foreach($users as $dato)
                         <option value="{{ $dato->id }}">{{ $dato->razon_social }}</option>

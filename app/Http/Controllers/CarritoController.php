@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Producto;
 use App\Models\SubCategoria;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Session;
 use Alert;
@@ -80,6 +81,13 @@ class CarritoController extends Controller
         if($producto->cantidad < 1){
             Alert::warning('¡Sin Stock!', 'No tenemos stock suficiente ')->showConfirmButton('Aceptar', 'rgba(79, 59, 228, 1)');
 
+            return redirect()->back();
+        }
+
+        if ($producto->fecha_vencimiento && Carbon::parse($producto->fecha_vencimiento)->isPast()) {
+            Alert::error('¡Producto Vencido!', 'Este producto ha caducado y no puede ser vendido')
+                ->showConfirmButton('Aceptar', 'rgba(228, 59, 59, 1)');
+        
             return redirect()->back();
         }
 

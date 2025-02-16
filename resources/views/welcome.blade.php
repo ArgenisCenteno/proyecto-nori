@@ -12,9 +12,9 @@
                     <p class="lead">
                         Conoce todos nuestros productos, estamos para servirte.
                     </p>
-                    <button class="btn btn-primary px-5 py-3 mt-3 fs-5 fw-medium" type="button">
+                    <a class="btn btn-primary px-5 py-3 mt-3 fs-5 fw-medium" href="{{ route('products') }}"> 
                         Ver productos
-                    </button>
+                    </a>
                 </div>
             </div>
             <div class="col-12 col-md-6">
@@ -101,43 +101,26 @@
         <!-- Grid column -->
 
         <!-- Grid column -->
-        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
-          <!-- Links -->
-          <h6 class="text-uppercase fw-bold mb-4">
-            Products
-          </h6>
-          <p>
-            <a href="#!" class="text-reset">Angular</a>
-          </p>
-          <p>
-            <a href="#!" class="text-reset">React</a>
-          </p>
-          <p>
-            <a href="#!" class="text-reset">Vue</a>
-          </p>
-          <p>
-            <a href="#!" class="text-reset">Laravel</a>
-          </p>
-        </div>
+       
         <!-- Grid column -->
 
         <!-- Grid column -->
         <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
           <!-- Links -->
           <h6 class="text-uppercase fw-bold mb-4">
-            Useful links
+           Enlaces Útiles
           </h6>
           <p>
-            <a href="#!" class="text-reset">Pricing</a>
+            <a href="#!" class="text-reset">Precios</a>
           </p>
           <p>
-            <a href="#!" class="text-reset">Settings</a>
+            <a href="#!" class="text-reset">Productos</a>
           </p>
           <p>
-            <a href="#!" class="text-reset">Orders</a>
+            <a href="#!" class="text-reset">Pedidos</a>
           </p>
           <p>
-            <a href="#!" class="text-reset">Help</a>
+            <a href="#!" class="text-reset">Atención al cliente</a>
           </p>
         </div>
         <!-- Grid column -->
@@ -145,14 +128,14 @@
         <!-- Grid column -->
         <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
           <!-- Links -->
-          <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
-          <p><i class="fas fa-home me-3"></i> New York, NY 10012, US</p>
+          <h6 class="text-uppercase fw-bold mb-4">Contacto</h6>
+          <p><i class="fas fa-home me-3"></i> Avenida Bolívar, calle sucre local 43</p>
           <p>
             <i class="fas fa-envelope me-3"></i>
-            info@example.com
+            atencionalcliente@farmagarba.com
           </p>
-          <p><i class="fas fa-phone me-3"></i> + 01 234 567 88</p>
-          <p><i class="fas fa-print me-3"></i> + 01 234 567 89</p>
+          <p><i class="fas fa-phone me-3"></i> + 04248000000</p>
+          <p><i class="fas fa-print me-3"></i> + 04248000000</p>
         </div>
         <!-- Grid column -->
       </div>
