@@ -95,7 +95,7 @@
             <i class="fas fa-gem me-3"></i>Farmagarba
           </h6>
           <p>
-            Empresa farmaceutica, Punta de Mata
+            Empresa farmaceutica, Punta de Mata. 
           </p>
         </div>
         <!-- Grid column -->
@@ -105,24 +105,7 @@
         <!-- Grid column -->
 
         <!-- Grid column -->
-        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-          <!-- Links -->
-          <h6 class="text-uppercase fw-bold mb-4">
-           Enlaces Útiles
-          </h6>
-          <p>
-            <a href="#!" class="text-reset">Precios</a>
-          </p>
-          <p>
-            <a href="#!" class="text-reset">Productos</a>
-          </p>
-          <p>
-            <a href="#!" class="text-reset">Pedidos</a>
-          </p>
-          <p>
-            <a href="#!" class="text-reset">Atención al cliente</a>
-          </p>
-        </div>
+        
         <!-- Grid column -->
 
         <!-- Grid column -->
