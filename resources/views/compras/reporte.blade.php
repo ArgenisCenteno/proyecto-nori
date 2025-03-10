@@ -30,8 +30,8 @@
                                     </div>
                                     <div class="col">
                                         <label for="end_date">Fecha Fin</label>
-                                        <input type="date" id="end_date" name="end_date" class="form-control" required>
-                                    </div>
+                                        <input type="date" id="end_date" name="end_date" class="form-control" required max="{{ date('Y-m-d') }}">
+                                        </div>
                                     <div class="col">
                                         <label for="end_date">Tipo</label>
                                         <select name="type" id="type" class="form-control">
@@ -53,3 +53,9 @@
 @include('layout.script')
 <script src="{{ asset('js/adminlte.js') }}"></script>
 <script src="{{asset('js/sweetalert2.js')}}"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        let today = new Date().toISOString().split('T')[0];
+        document.getElementById("end_date").setAttribute("max", today);
+    });
+</script>

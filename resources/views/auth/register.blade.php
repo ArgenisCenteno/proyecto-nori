@@ -100,7 +100,7 @@
               <div class="col-md-6 mb-4">
                 <div class="form-outline">
                   <label class="form-label" for="confirm_password">Confirmar Contraseña</label>
-                  <input type="confirm_password" id="confirm_password" name="confirm_password" class="form-control"
+                  <input type="password" id="confirm_password" name="confirm_password" class="form-control"
                     required />
                   @error('calle')
             <p class="text-danger">{{ $message }}</p> <!-- Mostrar error de validación -->
