@@ -1,130 +1,137 @@
 @extends('layouts.app')
 
 @section('content')
-<!-- Section: Design Block -->
-<section class="text-center">
-  <!-- Background image -->
-  <div class="bg-image" style="
-        background-image: url('https://mdbootstrap.com/img/new/textures/full/171.jpg');
-        height: 200px;
-        "></div>
-  <!-- Background image -->
+  <!-- Section: Design Block -->
+  <section class="text-center">
+    <!-- Background image -->
+    <div class="bg-image" style="
+      background-image: url('https://mdbootstrap.com/img/new/textures/full/171.jpg');
+      height: 200px;
+      "></div>
+    <!-- Background image -->
 
-  <div class="card mx-4 mx-md-5 shadow-5-strong bg-body-tertiary" style="
-        margin-top: -100px;
-        backdrop-filter: blur(30px);
-        ">
+    <div class="card mx-4 mx-md-5 shadow-5-strong bg-body-tertiary" style="
+      margin-top: -100px;
+      backdrop-filter: blur(30px);
+      ">
     <div class="card-body py-5 px-md-5">
 
       <div class="row d-flex justify-content-center">
-        <div class="col-lg-8">
-          <h2 class="fw-bold mb-5">Registrarse</h2>
+      <div class="col-lg-8">
+        <h2 class="fw-bold mb-5">Registrarse</h2>
 
-          <!-- Formulario de registro -->
-          <form method="POST" action="{{ route('register') }}" id="registerForm">
-            @csrf <!-- Token CSRF para Laravel -->
+        <!-- Formulario de registro -->
+        <form method="POST" action="{{ route('register') }}" id="registerForm">
+        @csrf <!-- Token CSRF para Laravel -->
 
-            <!-- 2 columnas para Nombre y Cédula -->
-            <div class="row">
-              <div class="col-md-6 mb-4">
-                <div class="form-outline">
-                  <label class="form-label" for="name">Nombre Completo</label>
-                  <input type="text" id="name" name="name" class="form-control" required />
-                  @error('name')
-            <p class="text-danger">{{ $message }}</p> <!-- Mostrar error de validación -->
-          @enderror
-                </div>
-              </div>
-              <div class="col-md-6 mb-4">
-                <div class="form-outline">
-                  <label class="form-label" for="cedula">Cédula de Identidad</label>
-                  <input type="text" id="cedula" name="cedula" class="form-control" required />
-                  <p class="text-danger" id="cedulaError" style="display: none;">Cédula inválida.</p>
-                  @error('dni')
-            <p class="text-danger">{{ $message }}</p> <!-- Mostrar error de validación -->
-          @enderror
-                </div>
-              </div>
-            </div>
-
-            <!-- Correo Electrónico -->
-            <div class="form-outline mb-4">
-              <label class="form-label" for="email">Correo Electrónico</label>
-              <input type="email" id="email" name="email" class="form-control" required />
-              @error('email')
-          <p class="text-danger">{{ $message }}</p> <!-- Mostrar error de validación -->
-        @enderror
-            </div>
-
-            <!-- Sector, Calle y Casa -->
-            <div class="row">
-              <div class="col-md-4 mb-4">
-                <div class="form-outline">
-                  <label class="form-label" for="sector">Sector</label>
-                  <input type="text" id="sector" name="sector" class="form-control" />
-                </div>
-              </div>
-              <div class="col-md-4 mb-4">
-                <div class="form-outline">
-                  <label class="form-label" for="calle">Calle</label>
-                  <input type="text" id="calle" name="calle" class="form-control" />
-                  @error('calle')
-            <p class="text-danger">{{ $message }}</p> <!-- Mostrar error de validación -->
-          @enderror
-                </div>
-              </div>
-              <div class="col-md-4 mb-4">
-                <div class="form-outline">
-                  <label class="form-label" for="casa">Casa</label>
-                  <input type="text" id="casa" name="casa" class="form-control" />
-                  @error('casa')
-            <p class="text-danger">{{ $message }}</p> <!-- Mostrar error de validación -->
-          @enderror
-
-
-                </div>
-              </div>
-            </div>
-
-            <!-- 2 columnas para Contraseña y Confirmar Contraseña -->
-            <div class="row">
-              <div class="col-md-6 mb-4">
-                <div class="form-outline">
-                  <label class="form-label" for="password">Contraseña</label>
-                  <input type="password" id="password" name="password" class="form-control" required />
-                </div>
-                @error('password')
-          <p class="text-danger">{{ $message }}</p> <!-- Mostrar error de validación -->
-        @enderror
-              </div>
-              <div class="col-md-6 mb-4">
-                <div class="form-outline">
-                  <label class="form-label" for="confirm_password">Confirmar Contraseña</label>
-                  <input type="password" id="confirm_password" name="confirm_password" class="form-control"
-                    required />
-                  @error('calle')
-            <p class="text-danger">{{ $message }}</p> <!-- Mostrar error de validación -->
-          @enderror
-                  <p class="text-danger" id="passwordError" style="display: none;">Las contraseñas no coinciden.</p>
-                </div>
-              </div>
-            </div>
-
-            <!-- Botón de envío -->
-            <button type="submit" class="btn btn-primary btn-block mb-4">
-              Registrarse
-            </button>
-          </form>
+        <!-- 2 columnas para Nombre y Cédula -->
+        <div class="row">
+          <div class="col-md-6 mb-4">
+          <div class="form-outline">
+            <label class="form-label" for="name">Nombre Completo</label>
+            <input type="text" id="name" name="name" class="form-control" required />
+            @error('name')
+        <p class="text-danger">{{ $message }}</p> <!-- Mostrar error de validación -->
+      @enderror
+          </div>
+          </div>
+          <div class="col-md-6 mb-4">
+          <div class="form-outline">
+            <label class="form-label" for="cedula">Cédula de Identidad</label>
+            <input type="text" id="cedula" name="cedula" class="form-control" required />
+            <p class="text-danger" id="cedulaError" style="display: none;">Cédula inválida.</p>
+            @error('dni')
+        <p class="text-danger">{{ $message }}</p> <!-- Mostrar error de validación -->
+      @enderror
+          </div>
+          </div>
         </div>
+
+        <!-- Correo Electrónico -->
+        <div class="form-outline mb-4">
+          <label class="form-label" for="email">Correo Electrónico</label>
+          <input type="email" id="email" name="email" class="form-control" required />
+          @error('email')
+        <p class="text-danger">{{ $message }}</p> <!-- Mostrar error de validación -->
+      @enderror
+        </div>
+
+        <!-- Sector, Calle y Casa -->
+        <div class="row">
+          <div class="col-md-4 mb-4">
+          <div class="form-outline">
+            <label class="form-label" for="sector">Sector</label>
+            <input type="text" id="sector" name="sector" class="form-control" />
+          </div>
+          </div>
+          <div class="col-md-4 mb-4">
+          <div class="form-outline">
+            <label class="form-label" for="calle">Calle</label>
+            <input type="text" id="calle" name="calle" class="form-control" />
+            @error('calle')
+        <p class="text-danger">{{ $message }}</p> <!-- Mostrar error de validación -->
+      @enderror
+          </div>
+          </div>
+          <div class="col-md-4 mb-4">
+          <div class="form-outline">
+            <label class="form-label" for="casa">Casa</label>
+            <input type="text" id="casa" name="casa" class="form-control" />
+            @error('casa')
+        <p class="text-danger">{{ $message }}</p> <!-- Mostrar error de validación -->
+      @enderror
+
+
+          </div>
+          </div>
+        </div>
+
+        <div class="row">
+  <!-- Contraseña -->
+  <div class="col-md-6 mb-4">
+    <label class="form-label" for="password">Contraseña</label>
+    <div class="input-group">
+      <input type="password" id="password" name="password" class="form-control" required />
+      <button class="btn btn-outline-secondary" type="button" onclick="togglePassword('password', this)">
+        <i class="fas fa-eye"></i>
+      </button>
+    </div>
+    @error('password')
+      <p class="text-danger">{{ $message }}</p> <!-- Mostrar error de validación -->
+    @enderror
+  </div>
+
+  <!-- Confirmar Contraseña -->
+  <div class="col-md-6 mb-4">
+    <label class="form-label" for="confirm_password">Confirmar Contraseña</label>
+    <div class="input-group">
+      <input type="password" id="confirm_password" name="confirm_password" class="form-control" required />
+      <button class="btn btn-outline-secondary" type="button" onclick="togglePassword('confirm_password', this)">
+        <i class="fas fa-eye"></i>
+      </button>
+    </div>
+    @error('confirm_password')
+      <p class="text-danger">{{ $message }}</p> <!-- Mostrar error de validación -->
+    @enderror
+    <p class="text-danger" id="passwordError" style="display: none;">Las contraseñas no coinciden.</p>
+  </div>
+</div>
+
+        <!-- Botón de envío -->
+        <button type="submit" class="btn btn-primary btn-block mb-4">
+          Registrarse
+        </button>
+        </form>
+      </div>
       </div>
     </div>
-  </div>
-</section>
-<!-- Section: Design Block -->
+    </div>
+  </section>
+  <!-- Section: Design Block -->
 
-<!-- Scripts para validar cédula y contraseñas -->
-<script>
-  document.getElementById('registerForm').addEventListener('submit', function (event) {
+  <!-- Scripts para validar cédula y contraseñas -->
+  <script>
+    document.getElementById('registerForm').addEventListener('submit', function (event) {
     // Obtener valores
     const cedula = document.getElementById('cedula').value;
     const password = document.getElementById('password').value;
@@ -153,6 +160,26 @@
     if (!valid) {
       event.preventDefault();
     }
-  });
-</script>
+    });
+  </script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+  <script>
+    function togglePassword(inputId, iconElement) {
+    const input = document.getElementById(inputId);
+    const icon = iconElement.querySelector('i');
+
+    if (input.type === "password") {
+      input.type = "text";
+      icon.classList.remove("fa-eye");
+      icon.classList.add("fa-eye-slash");
+    } else {
+      input.type = "password";
+      icon.classList.remove("fa-eye-slash");
+      icon.classList.add("fa-eye");
+    }
+    }
+  </script>
 @endsection
