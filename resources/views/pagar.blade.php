@@ -71,7 +71,7 @@
                                 <input type="hidden" name="montoTotal" value="{{ $montoTotal }}">
                             </div>
                             <div class="d-flex justify-content-between align-items-center">
-                                <p class="fw-bold mb-0">Monto a en dolares:</p>
+                                <p class="fw-bold mb-0">Monto a Pagar en dolares:</p>
                                 <p class="text-muted mb-0">{{ number_format($montoDollar, 2) }} USD</p>
                                 <input type="hidden" name="montoTotal" value="{{ $montoDollar }}">
                             </div>
